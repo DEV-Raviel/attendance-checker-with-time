@@ -2,7 +2,6 @@
 <html>
 <head>
     <style>
-        
         body {
             font-family: sans-serif;
             margin: 20px;
@@ -15,17 +14,23 @@
         li {
             margin-bottom: 5px;
         }
+
+        .time {
+            color: #555;
+            font-size: 0.85em;
+            margin-left: 8px;
+        }
   </style>
 </head>
 <body>
-    <h1>Class Attendance-JaveScript Array and Loop</h1>
+    <h1>Class Attendance-JavaScript Array and Loop</h1>
 
     <label for="studentName">Add student name: </label>
     <input type="text" id="studentName"> 
     <button onclick="addStudent()">Add student</button>
 
     <h2>Attendance List:</h2>
-    <ol id="attendanceList"></ol>
+    <ol id="attendanceList"></ol> 
 
     <script>
         let studentNames = [];
@@ -37,18 +42,21 @@
             if (name === "") {
                 alert("Please enter a student name before submitting!");
             } else {
-                studentNames.push(name);
+                // Get current time in hh:mm:ss format
+                let currentTime = new Date().toLocaleTimeString();
+
+                // Store object with both name and timestamp
+                studentNames.push({ name: name, time: currentTime });
                 input.value = ""; 
 
                 let list = document.getElementById('attendanceList');
                 list.innerHTML = "";
 
                 for (let i = 0; i < studentNames.length; i++) {
-                    list.innerHTML += "<li>" + studentNames[i] + "</li>";
+                    list.innerHTML += "<li>" + studentNames[i].name + " <span class='time'>(" + studentNames[i].time + ")</span></li>";
                 }
             }
         }
     </script>
 </body>
-
 </html>
